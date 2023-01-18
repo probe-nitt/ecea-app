@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.probe">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Probe"
+        tools:targetApi="31"
+        tools:ignore="GoogleAppIndexWarning">
+
+        <meta-data
+            android:name="asset_statements"
+            android:resource="@string/asset_statements"/>
+        <activity
+            android:name="com.google.androidbrowserhelper.trusted.LauncherActivity"
+            android:exported="true">
+
+            <!-- Edit android:value to change the url opened by the Trusted Web Activity -->
+            <meta-data
+                android:name="android.support.customtabs.trusted.DEFAULT_URL"
+                android:value="https://probe.muhesh.studio/" />
+
+            <!-- This intent-filter adds the Trusted Web Activity to the Android Launcher -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!--
+              This intent-filter allows the Trusted Web Activity to handle Intents to open
+              airhorner.com.
+            -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <!-- Edit android:host to handle links to the target URL-->
+                <data
+                    android:scheme="https"
+                    android:host="probe.muhesh.studio/"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
