@@ -1,53 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.probe">
+
+    package="com.google.androidbrowserhelper.demos.twa_offline_first">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Probe"
-        tools:targetApi="31"
-        tools:ignore="GoogleAppIndexWarning">
+        android:theme="@style/Theme.Design.NoActionBar"
+        tools:ignore="GoogleAppIndexWarning"
+        tools:targetApi="31">
 
         <meta-data
             android:name="asset_statements"
-            android:resource="@string/asset_statements"/>
-        <activity
-            android:name="com.google.androidbrowserhelper.trusted.LauncherActivity"
-            android:exported="true">
+            android:resource="@string/asset_statements" />
 
-            <!-- Edit android:value to change the url opened by the Trusted Web Activity -->
+        <activity
+            android:name=".OfflineFirstTWALauncherActivity"
+            android:theme= "@style/Theme.Design.NoActionBar"
+            android:exported="true" >
+
             <meta-data
                 android:name="android.support.customtabs.trusted.DEFAULT_URL"
-                android:value="https://probe.muhesh.studio/" />
-
-            <!-- This intent-filter adds the Trusted Web Activity to the Android Launcher -->
+                android:value="@string/host_url" />
+            <meta-data
+                android:name="android.support.customtabs.trusted.SPLASH_IMAGE_DRAWABLE"
+                android:resource="@drawable/ic_splash" />
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
 
-            <!--
-              This intent-filter allows the Trusted Web Activity to handle Intents to open
-              airhorner.com.
-            -->
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <!-- Edit android:host to handle links to the target URL-->
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Edit android:host to handle links to the target URL -->
                 <data
-                    android:scheme="https"
-                    android:host="probe.muhesh.studio/"/>
+                    android:host="@string/host_name"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
+
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.probe.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filespath" />
+        </provider>
     </application>
 
 </manifest>

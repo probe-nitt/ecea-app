@@ -8,4 +8,10 @@
                 \"site\": \"https://probe.muhesh.studio/\"}
         }]
     </string>
+    <string name="host_name">ecea.nitt.edu</string>
+    <string name="host_url">https://ecea.nitt.edu</string>
+    <string name="twa_offline_first_preferences_file_key">twa_offline_first_preferences</string>
+    <string name="twa_launched_successfully">twa_launched_successfully</string>
+    <string name="offline">You are offline</string>
+    <string name="Retry">Retry</string>
 </resources>
