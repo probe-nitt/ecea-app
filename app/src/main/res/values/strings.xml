@@ -5,7 +5,7 @@
             \"relation\": [\"delegate_permission/common.handle_all_urls\"],
             \"target\": {
                 \"namespace\": \"web\",
-                \"site\": \"https://probe.muhesh.studio/\"}
+                \"site\": \"https://ecea.nitt.edu\"}
         }]
     </string>
     <string name="host_name">ecea.nitt.edu</string>
